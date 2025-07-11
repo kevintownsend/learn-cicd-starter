@@ -22,7 +22,8 @@ jobs:
       - id: 'auth'
         uses: 'google-github-actions/auth@v2'
         with:
-          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+          service_account: 'cloud-run-deployer@notely-465521.iam.gserviceaccount.com'
 
       - name: Setup Google Cloud CLI
         uses: google-github-actions/setup-gcloud@v2
