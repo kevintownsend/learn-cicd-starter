@@ -19,10 +19,14 @@ jobs:
       - name: Build Docker image
         run: ./scripts/buildprod.sh
 
-      - name: Setup Google Cloud CLI
-        uses: google-github-actions/setup-gcloud@v1
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v2'
         with:
-          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+      - name: Setup Google Cloud CLI
+        uses: google-github-actions/setup-gcloud@v2
+        with:
           project_id: notely-465521
 
       - name: Upload image to cloud
